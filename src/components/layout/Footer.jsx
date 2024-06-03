@@ -3,11 +3,9 @@ import React from "react";
 
 export const Footer = () => {
   return (
-    <div className="bg-dark text-white footer-custom p-3 d-flex justify-content-center align-items-center">
-      &copy; All rights reserved to 2024 || Made by&nbsp;
-      <Link to={"http://www.google.com"} className="nav-link">
-        Bikash!!
-      </Link>
+    <div className="bg-dark text-white  text-center p-5 ">
+      &copy; All rights reserved to 2024 || Made by<a href=""> Bikash </a>with
+      fun!
     </div>
   );
 };

@@ -8,43 +8,45 @@ import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 
 export const Home = () => {
-  const [searchedBooks, setSearchedBooks] = useState([]);
-
   const { books } = useSelector((state) => state.bookInfo);
+
+  const [searchedBooks, setSearchedBooks] = useState([]);
 
   useEffect(() => {
     setSearchedBooks(books);
-  }, [setSearchedBooks, books]);
+  }, [books]);
 
   const handleOnSearch = (e) => {
     const { value } = e.target;
 
-    const arg = books.filter(({ title }) =>
-      title.toLowerCase().includes(value)
+    setSearchedBooks(
+      books.filter(({ title }) =>
+        title.toLowerCase().includes(value.toLowerCase())
+      )
     );
-
-    console.log(arg);
-    setSearchedBooks(arg);
   };
 
   return (
     <DefaultLayout>
       <CustomCarousel />
+
       {/* Book List */}
+
       <Container>
         <Row>
-          <Col className="mt-3 d-flex justify-content-between">
+          <Col className="mt-5 d-flex justify-content-between">
             <label htmlFor="">{searchedBooks.length} Books Found!</label>
-            <div className="">
+            <div>
               <Form.Control
-                placeholder="Search by name..."
+                placeholder="Search book by name..."
                 onChange={handleOnSearch}
               />
             </div>
           </Col>
         </Row>
-        <Row>
-          <Col className="d-flex flex-wrap gap-4">
+        <hr />
+        <Row className="mb-5">
+          <Col className="d-flex flex-wrap gap-2">
             {searchedBooks.length > 0 &&
               searchedBooks.map((book) => (
                 <Link key={book._id} to={`/books/${book._id}`}>

@@ -4,11 +4,11 @@ import { apiProcessior } from "../../helper/axiosHelper";
 const BurrowAPI = import.meta.env.VITE_APP_BURROW_EP;
 
 // post new Burrow
-export const postNewBurrow = (BurrowObj) => {
+export const postNewBurrow = (obj) => {
   const axiosObj = {
     url: BurrowAPI,
     method: "post",
-    data: BurrowObj,
+    data: obj,
     isPrivate: true,
   };
 
@@ -55,17 +55,6 @@ export const fetchSingleBurrow = async (_id) => {
   const axiosObj = {
     method: "get",
     url: BurrowAPI + "/" + _id,
-  };
-
-  return await apiProcessior(axiosObj);
-};
-
-// delete Burrow from_id
-export const deleteSingleBurrow = async (_id) => {
-  const axiosObj = {
-    method: "delete",
-    url: BurrowAPI + "/" + _id,
-    isPrivate: true,
   };
 
   return await apiProcessior(axiosObj);

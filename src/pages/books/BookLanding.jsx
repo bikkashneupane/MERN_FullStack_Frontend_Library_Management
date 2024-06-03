@@ -20,7 +20,8 @@ export const BookLanding = () => {
   if (!book?._id) {
     return <Spinner animation="border"></Spinner>;
   }
-  const { title, author, publishedYear, thumbnail, description } = book;
+  const { title, author, publishedYear, thumbnail, description, isAvailable } =
+    book;
 
   const handleOnBookBurrow = () => {
     if (window.confirm("Are you sure, you want to burrow the book?")) {
@@ -38,7 +39,7 @@ export const BookLanding = () => {
       <Row className="g-2">
         <Col md={6}>
           <div className="m-auto" style={{ maxWidth: "450px" }}>
-            <img src={thumbnail} className="m-auto" width={"100%"}></img>
+            <img src={thumbnail} width={"100%"}></img>
           </div>
         </Col>
         <Col md={6}>
@@ -46,8 +47,11 @@ export const BookLanding = () => {
           <p>
             {author} - {publishedYear}
           </p>
+
           <Stars stars={3.5} />
+
           <p className="mt-5">{description.slice(0, 130)}.....</p>
+
           <div className="d-grid">
             {user?._id ? (
               <Button variant="warning" onClick={handleOnBookBurrow}>
@@ -62,7 +66,7 @@ export const BookLanding = () => {
         </Col>
       </Row>
       <Row>
-        <Col md={6}>
+        <Col>
           <Tabs
             defaultActiveKey="profile"
             id="uncontrolled-tab-example"

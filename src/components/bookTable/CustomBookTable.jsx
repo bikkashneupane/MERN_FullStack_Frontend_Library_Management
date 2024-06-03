@@ -27,16 +27,19 @@ export const CustomBookTable = () => {
 
   return (
     <>
-      <div className="p-5">
-        <div className="d-flex justify-content-between mt-4">
+      <div>
+        <div className="d-flex justify-content-between mb-4">
           <p>{books.length} books found</p>
-          <input
-            type="text"
-            placeholder="Search book by name..."
-            className="rounded-2"
-          />
+          <div>
+            <input
+              type="text"
+              className="form-control"
+              placeholder="Search book by name..."
+            />
+          </div>
         </div>
-        <div className="mt-3">
+
+        <div>
           <Table striped bordered hover>
             <thead>
               <tr>
@@ -49,7 +52,7 @@ export const CustomBookTable = () => {
             <tbody>
               {books.map((book, i) => {
                 return (
-                  <tr key={i}>
+                  <tr key={book._id}>
                     <td>{i + 1}</td>
                     <td className="d-flex justify-content-center">
                       <img src={book.thumbnail} width={"70px"} alt="" />
@@ -72,8 +75,8 @@ export const CustomBookTable = () => {
                       </div>
                     </td>
                     <td>
-                      <div className="d-flex flex-column justify-content-center gap-2">
-                        <Button variant="warning">
+                      <div className="d-flex gap-2">
+                        <Button variant="warning w-50">
                           <Link
                             to={`/admin/books/edit/${book._id}`}
                             className="nav-link"
@@ -83,7 +86,7 @@ export const CustomBookTable = () => {
                         </Button>
 
                         <Button
-                          variant="danger"
+                          variant="danger w-50"
                           onClick={() => handleOnDelete(book._id)}
                         >
                           <i className="bi bi-trash"> </i> Delete

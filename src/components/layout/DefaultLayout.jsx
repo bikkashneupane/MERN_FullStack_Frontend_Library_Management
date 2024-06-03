@@ -1,11 +1,11 @@
 import { Container } from "react-bootstrap";
-import { CustomNavbar } from "./CustomNavbar";
 import { Footer } from "./Footer";
+import { Header } from "./Header";
 
 export const DefaultLayout = ({ pageTitle, children }) => {
   return (
     <>
-      <CustomNavbar />
+      <Header />
 
       <Container>
         {/* main section */}
