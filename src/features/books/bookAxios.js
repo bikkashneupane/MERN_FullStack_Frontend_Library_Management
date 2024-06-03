@@ -1,5 +1,6 @@
 import { apiProcessior } from "../../helper/axiosHelper";
 
+// http://localhost:8000/library/books
 const bookAPI = import.meta.env.VITE_APP_BOOK_EP;
 
 // post new book
@@ -54,6 +55,17 @@ export const fetchSingleBook = async (_id) => {
   const axiosObj = {
     method: "get",
     url: bookAPI + "/" + _id,
+  };
+
+  return await apiProcessior(axiosObj);
+};
+
+// delete book from_id
+export const deleteSingleBook = async (_id) => {
+  const axiosObj = {
+    method: "delete",
+    url: bookAPI + "/" + _id,
+    isPrivate: true,
   };
 
   return await apiProcessior(axiosObj);

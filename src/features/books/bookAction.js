@@ -1,4 +1,9 @@
-import { fetchBooks, fetchSingleBook, postNewBook } from "./bookAxios";
+import {
+  deleteSingleBook,
+  fetchBooks,
+  fetchSingleBook,
+  postNewBook,
+} from "./bookAxios";
 import { setBook, setSelectedBook } from "./bookSlice";
 
 import { Link } from "react-router-dom";
@@ -11,6 +16,8 @@ export const addNewBookAction = async (bookObj) => {
 
   const { status, message } = await pendingBook;
   toast[status](message);
+
+  return status;
 };
 
 // get all books action
@@ -26,5 +33,14 @@ export const getSingleBooksAction = (_id) => async (dispatch) => {
   const { status, books } = await fetchSingleBook(_id);
   if (status) {
     dispatch(setSelectedBook(books));
+  }
+};
+
+// delete single book
+export const deleteBookAction = (_id) => async (dispatch) => {
+  const { status, message } = await deleteSingleBook(_id);
+
+  if (status === "success") {
+    dispatch(setBook());
   }
 };

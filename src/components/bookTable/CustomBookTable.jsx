@@ -1,10 +1,13 @@
 import React, { useEffect } from "react";
+import {
+  deleteBookAction,
+  getAllBooksAction,
+} from "../../features/books/bookAction";
 import { useDispatch, useSelector } from "react-redux";
 
 import { Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import Table from "react-bootstrap/Table";
-import { getAllBooksAction } from "../../features/books/bookAction";
 
 const isPrivate = true;
 
@@ -16,6 +19,11 @@ export const CustomBookTable = () => {
   useEffect(() => {
     dispatch(getAllBooksAction(isPrivate));
   }, [dispatch]);
+
+  const handleOnDelete = (_id) => {
+    console.log(_id);
+    dispatch(deleteBookAction(_id));
+  };
 
   return (
     <>
@@ -74,7 +82,10 @@ export const CustomBookTable = () => {
                           </Link>{" "}
                         </Button>
 
-                        <Button variant="danger">
+                        <Button
+                          variant="danger"
+                          onClick={() => handleOnDelete(book._id)}
+                        >
                           <i className="bi bi-trash"> </i> Delete
                         </Button>
                       </div>

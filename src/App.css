@@ -14,3 +14,12 @@
   height: 60vh;
   object-fit: cover;
 }
+
+.card:hover img {
+  transform: scale(1.1);
+  transition: all 0.4s;
+}
+
+/* .image-container img {
+  object-fit: cover;
+} */

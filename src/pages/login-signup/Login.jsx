@@ -1,10 +1,10 @@
 import { Button, Col, Container, Form, Row } from "react-bootstrap";
+import { getUserObj, loginUserAction } from "../../features/user/userAction";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useRef } from "react";
 
 import { CustomForm } from "../../components/customForm.jsx/CustomForm";
 import { DefaultLayout } from "../../components/layout/DefaultLayout";
-import { getUserObj } from "../../features/user/userAction";
 import { loginUser } from "../../features/user/userAxios";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
@@ -31,18 +31,7 @@ export const Login = () => {
       return toast.error("Both field must be filled");
     }
 
-    const loginPending = loginUser({ email, password });
-    toast.promise(loginPending, { pending: "Authenticating credentials...." });
-
-    const { status, message, tokens } = await loginPending;
-    toast[status](message);
-
-    if (status === "success") {
-      sessionStorage.setItem("accessJWT", tokens.accessJWT);
-      localStorage.setItem("refreshJWT", tokens.refreshJWT);
-
-      dispatch(getUserObj());
-    }
+    dispatch(loginUserAction({ email, password }));
   };
 
   const inputs = [

@@ -6,6 +6,7 @@ import { Route, Routes } from "react-router-dom";
 import { AddBook } from "./pages/books/AddBook";
 import { AdminList } from "./pages/user/AdminList";
 import { AllBurrow } from "./pages/burrow/AllBurrow";
+import { BookLanding } from "./pages/books/BookLanding";
 import { BookList } from "./pages/books/BookList";
 import { Dashboard } from "./pages/dashboard/Dashboard";
 import { EditBook } from "./pages/books/EditBook";
@@ -16,8 +17,18 @@ import { Signup } from "./pages/login-signup/Signup";
 import { StudentsList } from "./pages/user/StudentsList";
 import { ToastContainer } from "react-toastify";
 import { UserProfile } from "./pages/user/UserProfile";
+import { getAllBooksAction } from "./features/books/bookAction";
+import { useDispatch } from "react-redux";
+import { useEffect } from "react";
+
+const isPrivate = false;
 
 function App() {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getAllBooksAction());
+  }, [dispatch]);
   return (
     <>
       <Routes>
@@ -25,19 +36,14 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
+        <Route path="/books/:_id" element={<BookLanding />} />
 
         {/* private path */}
         <Route path="/dashboard" element={<Dashboard />} />
-
-        {/* book path */}
         <Route path="/admin/books" element={<BookList />} />
         <Route path="/admin/books/add" element={<AddBook />} />
         <Route path="/admin/books/edit/:_id" element={<EditBook />} />
-
-        {/* burrow path */}
         <Route path="/admin/all-burrows" element={<AllBurrow />} />
-
-        {/* user */}
         <Route path="/admin/students" element={<StudentsList />} />
         <Route path="/admin/admins" element={<AdminList />} />
 

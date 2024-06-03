@@ -1,7 +1,7 @@
 import { Button, Col, Container, Form, Row } from "react-bootstrap";
+import { Link, useNavigate } from "react-router-dom";
 
 import { CustomForm } from "../../components/customForm.jsx/CustomForm";
-import { Link } from "react-router-dom";
 import React from "react";
 import { UserLayout } from "../../components/layout/UserLayout";
 import { addNewBookAction } from "../../features/books/bookAction";
@@ -9,10 +9,13 @@ import { useForm } from "../../hooks/useForm";
 
 export const AddBook = () => {
   const { form, handleOnChange } = useForm();
+  const navigate = useNavigate();
 
   const handleOnSubmit = (e) => {
     e.preventDefault();
-    addNewBookAction(form);
+
+    const { status } = addNewBookAction(form);
+    status === "success" && navigate("/admin/books");
   };
 
   const inputs = [
