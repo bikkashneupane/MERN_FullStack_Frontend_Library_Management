@@ -6,7 +6,6 @@ import {
 } from "./bookAxios";
 import { setBook, setSelectedBook } from "./bookSlice";
 
-import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
 
 // add new book action

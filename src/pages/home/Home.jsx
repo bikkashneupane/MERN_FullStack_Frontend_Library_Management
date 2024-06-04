@@ -48,11 +48,14 @@ export const Home = () => {
         <Row className="mb-5">
           <Col className="d-flex flex-wrap gap-2">
             {searchedBooks.length > 0 &&
-              searchedBooks.map((book) => (
-                <Link key={book._id} to={`/books/${book._id}`}>
-                  <CustomCard {...book} />
-                </Link>
-              ))}
+              searchedBooks.map(
+                (book) =>
+                  book.status === "active" && (
+                    <Link key={book._id} to={`/books/${book._id}`}>
+                      <CustomCard {...book} />
+                    </Link>
+                  )
+              )}
           </Col>
         </Row>
       </Container>

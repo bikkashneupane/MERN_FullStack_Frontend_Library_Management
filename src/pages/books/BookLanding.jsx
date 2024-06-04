@@ -1,5 +1,5 @@
 import { Button, Col, Row, Spinner, Tab, Tabs } from "react-bootstrap";
-import { Link, useParams } from "react-router-dom";
+import { Link, useLocation, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 
 import { DefaultLayout } from "../../components/layout/DefaultLayout";
@@ -9,6 +9,8 @@ import { addNewBurrowAction } from "../../features/burrows/burrowAction";
 
 export const BookLanding = () => {
   const { _id } = useParams();
+  const location = useLocation();
+  console.log(location);
 
   const dispatch = useDispatch();
 
@@ -20,8 +22,15 @@ export const BookLanding = () => {
   if (!book?._id) {
     return <Spinner animation="border"></Spinner>;
   }
-  const { title, author, publishedYear, thumbnail, description, isAvailable } =
-    book;
+  const {
+    title,
+    author,
+    publishedYear,
+    thumbnail,
+    description,
+    isAvailable,
+    expectedAvailable,
+  } = book;
 
   const handleOnBookBurrow = () => {
     if (window.confirm("Are you sure, you want to burrow the book?")) {
@@ -54,11 +63,24 @@ export const BookLanding = () => {
 
           <div className="d-grid">
             {user?._id ? (
-              <Button variant="warning" onClick={handleOnBookBurrow}>
-                Burrow Book
+              <Button
+                variant="warning"
+                onClick={handleOnBookBurrow}
+                disabled={!isAvailable}
+              >
+                {isAvailable
+                  ? "Burrow Book"
+                  : `Expected available date: ${expectedAvailable.slice(
+                      0,
+                      10
+                    )}`}
               </Button>
             ) : (
-              <Link to={"/login"} className="d-grid">
+              <Link
+                to={"/login"}
+                className="d-grid"
+                state={{ from: { location } }}
+              >
                 <Button>Login to Burrow</Button>
               </Link>
             )}
@@ -73,7 +95,7 @@ export const BookLanding = () => {
             className="mb-3 mt-5"
           >
             <Tab eventKey="description" title="Description">
-              Description
+              {description}
             </Tab>
             <Tab eventKey="review" title="Reviews">
               <ReviewBlock />

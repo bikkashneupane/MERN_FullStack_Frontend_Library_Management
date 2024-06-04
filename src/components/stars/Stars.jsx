@@ -1,6 +1,6 @@
+import { FaRegStar, FaStar } from "react-icons/fa";
+
 import { FaRegStarHalfStroke } from "react-icons/fa6";
-import { FaStar } from "react-icons/fa";
-import React from "react";
 
 const maxRating = 5;
 export const Stars = ({ stars = 0 }) => {
@@ -31,7 +31,7 @@ export const Stars = ({ stars = 0 }) => {
     } else if (i === fullRating && hasHalf) {
       ratings.push(<FaRegStarHalfStroke key={i} className="text-warning" />);
     } else {
-      ratings.push(<FaStar key={i} />);
+      ratings.push(<FaRegStar key={i} className="text-secondary" />);
     }
   }
 

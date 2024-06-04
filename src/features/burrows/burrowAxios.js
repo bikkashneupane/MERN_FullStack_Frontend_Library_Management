@@ -40,10 +40,10 @@ export const fetchAllBurrows = () => {
 
 //if isPrivate = true, api = /Burrows/all
 //if isPrivate = false, api = /Burrows
-export const fetchBurrows = async (isPrivate) => {
+export const fetchBurrows = async () => {
   const axiosObj = {
     method: "get",
-    url: isPrivate ? `${BurrowAPI}/all` : BurrowAPI,
+    url: BurrowAPI,
     isPrivate: true,
   };
 
@@ -55,6 +55,18 @@ export const fetchSingleBurrow = async (_id) => {
   const axiosObj = {
     method: "get",
     url: BurrowAPI + "/" + _id,
+  };
+
+  return await apiProcessior(axiosObj);
+};
+
+//return burrow
+export const returnBurrowBook = async (obj) => {
+  const axiosObj = {
+    method: "put",
+    url: BurrowAPI,
+    data: obj,
+    isPrivate: true,
   };
 
   return await apiProcessior(axiosObj);

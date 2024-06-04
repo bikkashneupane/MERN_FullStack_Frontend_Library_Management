@@ -17,18 +17,21 @@ import { Signup } from "./pages/login-signup/Signup";
 import { StudentsList } from "./pages/user/StudentsList";
 import { ToastContainer } from "react-toastify";
 import { UserProfile } from "./pages/user/UserProfile";
+import { autoLogin } from "./features/user/userAction";
 import { getAllBooksAction } from "./features/books/bookAction";
 import { useDispatch } from "react-redux";
 import { useEffect } from "react";
 
-const isPrivate = false;
+// const isPrivate = false;
 
 function App() {
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(getAllBooksAction());
+    dispatch(autoLogin());
   }, [dispatch]);
+
   return (
     <>
       <Routes>

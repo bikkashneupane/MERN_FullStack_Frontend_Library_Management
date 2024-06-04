@@ -30,7 +30,6 @@ export const apiProcessior = async ({
     return response.data;
   } catch (error) {
     const message = error?.response?.data?.message ?? error.message;
-    console.log(message);
     if (message === "jwt expired") {
       //now user uses refreshJWT to request new accessJWT
       const token = await getNewAccessJWT();

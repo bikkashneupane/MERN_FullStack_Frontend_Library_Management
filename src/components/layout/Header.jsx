@@ -1,11 +1,25 @@
+import { useDispatch, useSelector } from "react-redux";
+
 import Container from "react-bootstrap/Container";
 import { Link } from "react-router-dom";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
-import { useSelector } from "react-redux";
+import { setUser } from "../../features/user/userSlice";
 
 export const Header = () => {
+  const dispatch = useDispatch();
+
   const { user } = useSelector((state) => state.userInfo);
+
+  const handleOnLogOut = () => {
+    //log out from browser
+    sessionStorage.removeItem("accessJWT");
+    localStorage.removeItem("refreshJWT");
+    dispatch(setUser({}));
+
+    //log out from server
+  };
+
   return (
     <Navbar expand="md" variant="dark" className="bg-dark">
       <Container>
@@ -23,7 +37,7 @@ export const Header = () => {
                 <Link className="nav-link" to="/dashboard">
                   <i className="fa-solid fa-house"></i> Dashboard
                 </Link>
-                <Link className="nav-link" to="/">
+                <Link className="nav-link" to="/" onClick={handleOnLogOut}>
                   <i className="fa-solid fa-house"></i> Logout
                 </Link>
               </>

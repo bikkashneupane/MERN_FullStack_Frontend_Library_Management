@@ -16,10 +16,11 @@ export const EditBook = () => {
   const dispatch = useDispatch();
 
   const navigate = useNavigate();
-  const { selectedBook } = useSelector((state) => state.bookInfo);
-  console.log(selectedBook);
+  const { selectedBook } = useSelector((state) => state.bookInfo) || [];
+
   //fetch single book and populate form
   //check if the id from form and id from params is not same
+
   useEffect(() => {
     if (form?._id !== _id) {
       dispatch(getSingleBooksAction(_id));
@@ -29,7 +30,6 @@ export const EditBook = () => {
 
   const handleOnSubmit = async (e) => {
     e.preventDefault();
-
     const book = await putEditBook(form);
 
     const { status, message } = book;
