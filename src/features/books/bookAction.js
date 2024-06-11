@@ -15,8 +15,8 @@ export const addNewBookAction = async (bookObj) => {
 
   const { status, message } = await pendingBook;
   toast[status](message);
-
-  return status;
+  console.log(status);
+  return { status };
 };
 
 // get all books action

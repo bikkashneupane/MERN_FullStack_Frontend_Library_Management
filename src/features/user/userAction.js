@@ -8,8 +8,7 @@ import { toast } from "react-toastify";
 
 //this will update state in redux store using dispatche
 export const getUserObj = () => async (dispatch) => {
-  const { user, status, message } = await fetchUserInfo();
-  // console.log(user, status, message);
+  const { user } = await fetchUserInfo();
 
   //update redux store
   dispatch(setUser(user));

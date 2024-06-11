@@ -26,80 +26,76 @@ export const CustomBookTable = () => {
   };
 
   return (
-    <>
-      <div>
-        <div className="d-flex justify-content-between mb-4">
-          <p>{books.length} books found</p>
-          <div>
-            <input
-              type="text"
-              className="form-control"
-              placeholder="Search book by name..."
-            />
-          </div>
-        </div>
-
+    <div>
+      <div className="d-flex justify-content-between mb-4">
+        <p>{books.length} books found</p>
         <div>
-          <Table striped bordered hover>
-            <thead>
-              <tr>
-                <th>#</th>
-                <th></th>
-                <th>Book</th>
-                <th></th>
-              </tr>
-            </thead>
-            <tbody>
-              {books.map((book, i) => {
-                return (
-                  <tr key={book._id}>
-                    <td>{i + 1}</td>
-                    <td className="d-flex justify-content-center">
-                      <img src={book.thumbnail} width={"70px"} alt="" />
-                      {/* //add a toggle to change status from book.status
-                      I will define thefunction to update myself */}
-                    </td>
-                    <td>
-                      <div>
-                        <h2>{book.title.slice(0, 30)}</h2>
-                        <div>{book.author}</div>
-                        <div
-                          className={
-                            book.status === "active"
-                              ? "text-success"
-                              : "text-danger"
-                          }
-                        >
-                          Status: {book.status}
-                        </div>
-                      </div>
-                    </td>
-                    <td>
-                      <div className="d-flex gap-2">
-                        <Button variant="warning w-50">
-                          <Link
-                            to={`/admin/books/edit/${book._id}`}
-                            className="nav-link"
-                          >
-                            <i className="bi bi-pen-fill"></i> Edit
-                          </Link>{" "}
-                        </Button>
-
-                        <Button
-                          variant="danger w-50"
-                          onClick={() => handleOnDelete(book._id)}
-                        >
-                          <i className="bi bi-trash"> </i> Delete
-                        </Button>
-                      </div>
-                    </td>
-                  </tr>
-                );
-              })}
-            </tbody>
-          </Table>
+          <input
+            type="text"
+            className="form-control"
+            placeholder="Search book by name..."
+          />
         </div>
       </div>
-    </>
+
+      <div>
+        <Table striped bordered hover>
+          <thead>
+            <tr>
+              <th>#</th>
+              <th></th>
+              <th>Book</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            {books.map((book, i) => {
+              return (
+                <tr key={book._id}>
+                  <td>{i + 1}</td>
+                  <td className="d-flex justify-content-center">
+                    <img src={book.thumbnail} width={"70px"} alt="" />
+                  </td>
+                  <td>
+                    <div>
+                      <h2>{book.title.slice(0, 30)}</h2>
+                      <div>{book.author}</div>
+                      <div
+                        className={
+                          book.status === "active"
+                            ? "text-success"
+                            : "text-danger"
+                        }
+                      >
+                        Status: {book.status}
+                      </div>
+                    </div>
+                  </td>
+                  <td>
+                    <div className="d-flex gap-2">
+                      <Button variant="warning w-50">
+                        <Link
+                          to={`/admin/books/edit/${book._id}`}
+                          className="nav-link"
+                        >
+                          <i className="bi bi-pen-fill"></i> Edit
+                        </Link>{" "}
+                      </Button>
+
+                      <Button
+                        variant="danger w-50"
+                        onClick={() => handleOnDelete(book._id)}
+                      >
+                        <i className="bi bi-trash"> </i> Delete
+                      </Button>
+                    </div>
+                  </td>
+                </tr>
+              );
+            })}
+          </tbody>
+        </Table>
+      </div>
+    </div>
   );
 };

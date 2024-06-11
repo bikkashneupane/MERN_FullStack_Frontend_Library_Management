@@ -1,7 +1,8 @@
 import { apiProcessior } from "../../helper/axiosHelper";
 
-const privateUserAPI = import.meta.env.VITE_APP_USER_PRIVATE_EP;
-const userAPI = import.meta.env.VITE_APP_USER_EP;
+const privateUserAPI =
+  import.meta.env.VITE_APP_SERVER_API + "/library/users/private";
+const userAPI = import.meta.env.VITE_APP_SERVER_API + "/library/users";
 const signupAPI = `${userAPI}/signup`;
 const loginAPI = `${userAPI}/login`;
 

@@ -11,10 +11,10 @@ export const AddBook = () => {
   const { form, handleOnChange } = useForm();
   const navigate = useNavigate();
 
-  const handleOnSubmit = (e) => {
+  const handleOnSubmit = async (e) => {
     e.preventDefault();
-
-    const { status } = addNewBookAction(form);
+    const { status } = await addNewBookAction(form);
+    console.log(status);
     status === "success" && navigate("/admin/books");
   };
 

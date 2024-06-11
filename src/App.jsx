@@ -1,10 +1,7 @@
 import "./App.css";
 import "bootstrap-icons/font/bootstrap-icons.css";
-
 import { Route, Routes } from "react-router-dom";
-
 import { AddBook } from "./pages/books/AddBook";
-import { AdminList } from "./pages/user/AdminList";
 import { AllBurrow } from "./pages/burrow/AllBurrow";
 import { BookLanding } from "./pages/books/BookLanding";
 import { BookList } from "./pages/books/BookList";
@@ -21,6 +18,7 @@ import { autoLogin } from "./features/user/userAction";
 import { getAllBooksAction } from "./features/books/bookAction";
 import { useDispatch } from "react-redux";
 import { useEffect } from "react";
+import { Reviews } from "./pages/reviews/Reviews";
 
 // const isPrivate = false;
 
@@ -48,7 +46,7 @@ function App() {
         <Route path="/admin/books/edit/:_id" element={<EditBook />} />
         <Route path="/admin/all-burrows" element={<AllBurrow />} />
         <Route path="/admin/students" element={<StudentsList />} />
-        <Route path="/admin/admins" element={<AdminList />} />
+        <Route path="/admin/reviews" element={<Reviews />} />
 
         {/* both admin and students  */}
         <Route path="/my-books" element={<MyBurrow />} />

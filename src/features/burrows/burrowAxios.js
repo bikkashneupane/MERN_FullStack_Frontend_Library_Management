@@ -1,7 +1,7 @@
 import { apiProcessior } from "../../helper/axiosHelper";
 
 // http://localhost:8000/library/Burrows
-const BurrowAPI = import.meta.env.VITE_APP_BURROW_EP;
+const BurrowAPI = import.meta.env.VITE_APP_SERVER_API + "/library/burrows";
 
 // post new Burrow
 export const postNewBurrow = (obj) => {

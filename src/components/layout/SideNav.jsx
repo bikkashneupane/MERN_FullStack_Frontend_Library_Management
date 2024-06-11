@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import { PiStudentBold } from "react-icons/pi";
 import { Stack } from "react-bootstrap";
 import { useSelector } from "react-redux";
+import { TbStarsFilled } from "react-icons/tb";
 
 export const SideNav = () => {
   const { user } = useSelector((state) => state.userInfo);
@@ -27,6 +28,12 @@ export const SideNav = () => {
       to: "/admin/all-burrows",
     },
     {
+      icon: <TbStarsFilled />,
+      title: "Reviews",
+      to: "/admin/reviews",
+      isAdminOnly: true,
+    },
+    {
       icon: <FaBook />,
       title: "My Books",
       to: "/my-books",
@@ -35,12 +42,6 @@ export const SideNav = () => {
       icon: <CgProfile />,
       title: "Profile",
       to: "/profile",
-    },
-    {
-      icon: <CgProfile />,
-      title: "Admin",
-      to: "/admin/admins",
-      isAdminOnly: true,
     },
   ];
 

@@ -9,7 +9,7 @@ import Table from "react-bootstrap/Table";
 import { returnBurrowsAction } from "../../features/burrows/burrowAction";
 import { useDispatch } from "react-redux";
 
-export const MyBurrowTable = ({ burrows = [] }) => {
+export const MyBurrowTable = ({ burrows }) => {
   const dispatch = useDispatch();
   const [burrow, setBurrow] = useState({});
 
@@ -19,11 +19,11 @@ export const MyBurrowTable = ({ burrows = [] }) => {
     <div>
       {burrow?._id && (
         <CustomModal title="Leave your Review.." onHide={setBurrow}>
-          <ReviewForm burrow={burrow} />
+          <ReviewForm burrow={burrow} setBurrow={setBurrow} />
         </CustomModal>
       )}
       <div className="d-flex justify-content-between mb-4">
-        <p>{burrows.length} books found</p>
+        <p>{burrows?.length} books found</p>
         <div>
           <input
             type="text"
@@ -64,8 +64,8 @@ export const MyBurrowTable = ({ burrows = [] }) => {
 
                   <td>
                     {item.isReturned ? (
-                      <Button variant="warning" onClick={() => setBurrow(item)}>
-                        Give Review
+                      <Button onClick={() => setBurrow(item)} variant="warning">
+                        Give Reviews
                       </Button>
                     ) : (
                       <Button

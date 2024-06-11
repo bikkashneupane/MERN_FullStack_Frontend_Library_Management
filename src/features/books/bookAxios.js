@@ -1,7 +1,7 @@
 import { apiProcessior } from "../../helper/axiosHelper";
 
 // http://localhost:8000/library/books
-const bookAPI = import.meta.env.VITE_APP_BOOK_EP;
+const bookAPI = import.meta.env.VITE_APP_SERVER_API + "/library/books";
 
 // post new book
 export const postNewBook = (bookObj) => {
@@ -44,7 +44,7 @@ export const fetchBooks = async (isPrivate) => {
   const axiosObj = {
     method: "get",
     url: isPrivate ? `${bookAPI}/all` : bookAPI,
-    isPrivate: true,
+    isPrivate,
   };
 
   return await apiProcessior(axiosObj);

@@ -10,7 +10,7 @@ import { addNewBurrowAction } from "../../features/burrows/burrowAction";
 export const BookLanding = () => {
   const { _id } = useParams();
   const location = useLocation();
-  console.log(location);
+  // console.log(location);
 
   const dispatch = useDispatch();
 
@@ -22,6 +22,7 @@ export const BookLanding = () => {
   if (!book?._id) {
     return <Spinner animation="border"></Spinner>;
   }
+
   const {
     title,
     author,
@@ -43,6 +44,7 @@ export const BookLanding = () => {
       );
     }
   };
+
   return (
     <DefaultLayout>
       <Row className="g-2">
@@ -56,11 +58,8 @@ export const BookLanding = () => {
           <p>
             {author} - {publishedYear}
           </p>
-
           <Stars stars={3.5} />
-
           <p className="mt-5">{description.slice(0, 130)}.....</p>
-
           <div className="d-grid">
             {user?._id ? (
               <Button
@@ -98,7 +97,7 @@ export const BookLanding = () => {
               {description}
             </Tab>
             <Tab eventKey="review" title="Reviews">
-              <ReviewBlock />
+              <ReviewBlock stars={3.5} />
             </Tab>
           </Tabs>
           {/* tab bar

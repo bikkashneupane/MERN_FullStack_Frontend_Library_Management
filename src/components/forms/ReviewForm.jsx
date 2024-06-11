@@ -1,42 +1,47 @@
-import Button from "react-bootstrap/Button";
+import React, { useState } from "react";
+import { FaStar } from "react-icons/fa";
 import { CustomForm } from "../customForm.jsx/CustomForm";
-import { FaStar } from "react-icons/fa6";
-import Form from "react-bootstrap/Form";
-import { useState } from "react";
+import { Button, Form } from "react-bootstrap";
+import { useForm } from "../../hooks/useForm";
+import { useDispatch } from "react-redux";
+import { postReviewAction } from "../../features/reviews/reviewAction";
 
-export const ReviewForm = ({ burrow }) => {
-  const [form, handleOnChange] = useState({});
+export const ReviewForm = ({ burrow, setBurrow }) => {
+  const dispatch = useDispatch();
+  const { form, handleOnChange } = useForm({});
   const [ratings, setRatings] = useState(1);
 
   const handleOnSubmit = (e) => {
     e.preventDefault();
-
-    const { _id, userId, bookId, userName } = burrow;
-    const obj = {
+    const { _id, bookId, bookTitle, userId, userName, thumbnail } = burrow;
+    const reviewObj = {
       ...form,
-      ratings,
-      burrowId: _id,
-      userId,
       bookId,
+      bookTitle,
+      userId,
       userName,
+      burrowId: _id,
+      ratings,
+      thumbnail,
     };
-    console.log(obj);
+
+    dispatch(postReviewAction(reviewObj));
   };
 
   return (
     <div>
-      <h3>Give your review</h3>
       <Form onSubmit={handleOnSubmit}>
         <CustomForm
           label="Title"
           name="title"
           type="text"
+          required
           placeholder="Awesome book"
           onChange={handleOnChange}
         />
 
-        <div className="mb-2" onChange={handleOnChange}>
-          <label htmlFor="">Select Stars: </label>
+        <div className="mb-3">
+          <label htmlFor="">Select Star: </label>
           {new Array(5).fill("").map((item, i) => (
             <FaStar
               key={i}
@@ -45,17 +50,18 @@ export const ReviewForm = ({ burrow }) => {
             />
           ))}
         </div>
-
         <CustomForm
           label="Message"
           name="message"
+          type="text"
           as="textarea"
-          rows={5}
+          required
+          rows="5"
           placeholder="Write detail review"
           onChange={handleOnChange}
         />
 
-        <div className="d-grid">
+        <div className="d-grid py-2">
           <Button type="submit">Submit Review</Button>
         </div>
       </Form>
