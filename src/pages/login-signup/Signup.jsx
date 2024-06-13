@@ -32,21 +32,21 @@ export const Signup = () => {
       label: "First Name",
       name: "firstName",
       type: "text",
-      placeholder: "",
+      placeholder: "Jon",
       required: true,
     },
     {
       label: "Last Name",
       name: "lastName",
       type: "text",
-      placeholder: "",
+      placeholder: "Doe",
       required: true,
     },
     {
       label: "Phone",
       name: "phone",
       type: "number",
-      placeholder: "",
+      placeholder: "555-5555-555",
       required: true,
     },
     {
@@ -77,12 +77,7 @@ export const Signup = () => {
       <Container>
         <Row>
           <Col className=" mt-5 mt-5 d-flex justify-content-center">
-            <div
-              className="w-75 rounded-5 shadow-lg p-5 "
-              style={{
-                background: "linear-gradient(to right, pink, white)",
-              }}
-            >
+            <div className="w-75 rounded-5 shadow-lg p-5 ">
               <Form onSubmit={handleOnSubmit}>
                 <h4 className="text-center">Signup Now!!</h4>
                 <hr />

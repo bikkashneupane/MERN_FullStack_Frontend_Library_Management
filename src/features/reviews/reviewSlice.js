@@ -19,7 +19,6 @@ const reviewSlice = createSlice({
     },
     updateReviewStatus: (state, { payload }) => {
       //update public review
-      console.log(payload);
       state.publicReview.find((item) => item._id === payload._id)
         ? state.publicReview.pop((item) => item._id === payload._id)
         : state.publicReview.push(payload);

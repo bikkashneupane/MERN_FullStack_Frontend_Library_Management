@@ -69,12 +69,7 @@ export const AddBook = () => {
         <h2 className="text-center">Add New Book</h2>
         <Row>
           <Col className=" mt-2 d-flex justify-content-center">
-            <div
-              className="w-75 rounded-5 shadow-lg p-5 "
-              style={{
-                background: "linear-gradient(to right, pink, white)",
-              }}
-            >
+            <div className="w-75 rounded-5 shadow-lg p-5 ">
               <Form onSubmit={handleOnSubmit}>
                 {inputs.map((item, index) => (
                   <CustomForm key={index} {...item} onChange={handleOnChange} />

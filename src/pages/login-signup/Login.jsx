@@ -59,12 +59,7 @@ export const Login = () => {
       <Container>
         <Row>
           <Col className=" mt-5 mt-5 d-flex justify-content-center">
-            <div
-              className="w-75 rounded-5 shadow-lg p-5 "
-              style={{
-                background: "linear-gradient(to right, pink, white)",
-              }}
-            >
+            <div className="w-75 rounded-5 shadow-lg p-5 ">
               <Form onSubmit={handleOnSubmit}>
                 <h4 className="text-center">Login Now!!</h4>
                 <hr />

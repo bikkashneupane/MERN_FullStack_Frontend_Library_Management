@@ -104,9 +104,6 @@ export const BookLanding = () => {
               <ReviewBlock />
             </Tab>
           </Tabs>
-          {/* tab bar
-        content area
-         */}
         </Col>
       </Row>
     </DefaultLayout>
