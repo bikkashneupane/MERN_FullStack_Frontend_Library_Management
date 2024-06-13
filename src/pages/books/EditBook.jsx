@@ -88,13 +88,6 @@ export const EditBook = () => {
     },
   ];
 
-  // // can do this way as well
-  // // just put value=undefined in above input properties
-  // const inputFieldWithValue = inputs.map((item) => {
-  //   return { ...item, value: selectedBook[item.name] };
-  // });
-
-  //or just send value as prop inside CustomForm as value={form[input.name]}
   return (
     <UserLayout pageTitle={"Edit Book"}>
       <div className="m-5 p-4 border rounded-4 shadow-lg">

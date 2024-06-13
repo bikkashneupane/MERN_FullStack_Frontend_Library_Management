@@ -19,6 +19,7 @@ import { getAllBooksAction } from "./features/books/bookAction";
 import { useDispatch } from "react-redux";
 import { useEffect } from "react";
 import { Reviews } from "./pages/reviews/Reviews";
+import { fetchReviewAction } from "./features/reviews/reviewAction";
 
 // const isPrivate = false;
 
@@ -28,6 +29,7 @@ function App() {
   useEffect(() => {
     dispatch(getAllBooksAction());
     dispatch(autoLogin());
+    dispatch(fetchReviewAction());
   }, [dispatch]);
 
   return (

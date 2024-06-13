@@ -1,26 +1,23 @@
 import { Button, Col, Container, Form, Row } from "react-bootstrap";
-import { getUserObj, loginUserAction } from "../../features/user/userAction";
+import { loginUserAction } from "../../features/user/userAction";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useRef } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 
 import { CustomForm } from "../../components/customForm.jsx/CustomForm";
 import { DefaultLayout } from "../../components/layout/DefaultLayout";
-import { loginUser } from "../../features/user/userAxios";
 import { toast } from "react-toastify";
 
 export const Login = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const location = useLocation();
-  // console.log(location);
 
   const emailRef = useRef("");
   const passwordRef = useRef("");
 
   const { user } = useSelector((state) => state.userInfo);
   const sendTo = location?.state?.from?.location?.pathname || "/dashboard";
-  // console.log(sendTo);
 
   useEffect(() => {
     user?._id && navigate(sendTo);

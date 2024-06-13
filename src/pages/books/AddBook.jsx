@@ -14,7 +14,6 @@ export const AddBook = () => {
   const handleOnSubmit = async (e) => {
     e.preventDefault();
     const { status } = await addNewBookAction(form);
-    console.log(status);
     status === "success" && navigate("/admin/books");
   };
 
@@ -68,15 +67,6 @@ export const AddBook = () => {
     <UserLayout>
       <Container className="mb-5 mt-5">
         <h2 className="text-center">Add New Book</h2>
-        {/* <Row>
-          <Col>
-            <div>
-              <Link to={"/admin/books"}>
-                <Button variant="secondary">&lt; Back</Button>
-              </Link>
-            </div>
-          </Col>
-        </Row> */}
         <Row>
           <Col className=" mt-2 d-flex justify-content-center">
             <div

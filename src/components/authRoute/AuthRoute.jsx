@@ -4,7 +4,6 @@ import { useSelector } from "react-redux";
 
 export const AuthRoute = ({ children }) => {
   const location = useLocation();
-  // console.log(location);
   const { user } = useSelector((state) => state.userInfo);
   return user?._id ? (
     children

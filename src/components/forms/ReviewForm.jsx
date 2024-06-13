@@ -25,7 +25,10 @@ export const ReviewForm = ({ burrow, setBurrow }) => {
       thumbnail,
     };
 
-    dispatch(postReviewAction(reviewObj));
+    if (window.confirm("Are you sure, you want to leave this review?")) {
+      const action = dispatch(postReviewAction(reviewObj));
+      action && setBurrow({});
+    }
   };
 
   return (

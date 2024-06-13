@@ -30,7 +30,7 @@ export const fetchReviewAxios = async (isPrivate) => {
 export const updateReviewStatusAxios = async (obj) => {
   const axiosObj = {
     url: reviewEP,
-    method: "PATCH",
+    method: "patch",
     data: obj,
     isPrivate: true,
   };

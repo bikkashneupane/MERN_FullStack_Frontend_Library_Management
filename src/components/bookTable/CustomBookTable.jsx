@@ -21,7 +21,6 @@ export const CustomBookTable = () => {
   }, [dispatch]);
 
   const handleOnDelete = (_id) => {
-    console.log(_id);
     dispatch(deleteBookAction(_id));
   };
 
@@ -40,12 +39,12 @@ export const CustomBookTable = () => {
 
       <div>
         <Table striped bordered hover>
-          <thead>
+          <thead className="text-center">
             <tr>
               <th>#</th>
-              <th></th>
-              <th>Book</th>
-              <th></th>
+              <th>Thumbnail</th>
+              <th>Book Detail</th>
+              <th>Action</th>
             </tr>
           </thead>
           <tbody>

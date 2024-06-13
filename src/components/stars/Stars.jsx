@@ -11,7 +11,7 @@ export const Stars = ({ stars = 0 }) => {
   }
 
   const fullRating = Math.floor(stars);
-  const hasHalf = stars - fullRating >= 0.5;
+  const hasHalf = stars - fullRating;
 
   //   for (let i = 0; i < fullRating; i++) {
   //     ratings.push(<FaStar className="text-warning " />);
@@ -27,7 +27,7 @@ export const Stars = ({ stars = 0 }) => {
 
   for (let i = 0; i < maxRating; i++) {
     if (i < fullRating) {
-      ratings.push(<FaStar key={i} className="text-warning" />);
+      ratings.push(<FaStar key={i} className="text-warning " />);
     } else if (i === fullRating && hasHalf) {
       ratings.push(<FaRegStarHalfStroke key={i} className="text-warning" />);
     } else {

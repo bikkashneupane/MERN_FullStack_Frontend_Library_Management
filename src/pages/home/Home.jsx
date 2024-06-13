@@ -46,7 +46,7 @@ export const Home = () => {
         </Row>
         <hr />
         <Row className="mb-5">
-          <Col className="d-flex flex-wrap gap-2">
+          <Col className="d-flex flex-wrap gap-2 ">
             {searchedBooks.length > 0 &&
               searchedBooks.map(
                 (book) =>

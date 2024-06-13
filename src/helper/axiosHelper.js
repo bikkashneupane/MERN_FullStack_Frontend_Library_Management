@@ -1,7 +1,7 @@
 import axios from "axios";
 
-const privateUserAPI = import.meta.env.VITE_APP_USER_PRIVATE_EP;
-const newAccessAPI = `${privateUserAPI}/new-access`;
+const serverAPI = import.meta.env.VITE_APP_SERVER_API;
+const newAccessAPI = `${serverAPI}/library/users/new-access`;
 
 const getAccessJWT = () => {
   return sessionStorage.getItem("accessJWT");
@@ -36,12 +36,7 @@ export const apiProcessior = async ({
 
       //re-call back api processor
       if (token) {
-        return apiProcessior({
-          method,
-          url,
-          data,
-          isPrivate,
-        });
+        return apiProcessior({ method, url, data, isPrivate });
       }
 
       //clear the tokens
@@ -57,14 +52,12 @@ export const apiProcessior = async ({
 
 // request new access Token
 export const getNewAccessJWT = async () => {
-  const axiosObj = {
+  const { accessJWT } = await apiProcessior({
     url: newAccessAPI,
     method: "get",
     isPrivate: true,
     isRefreshJWT: true,
-  };
-
-  const { accessJWT } = await apiProcessior(axiosObj);
+  });
 
   sessionStorage.setItem("accessJWT", accessJWT);
 

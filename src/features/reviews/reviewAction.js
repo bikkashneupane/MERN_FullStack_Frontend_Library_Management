@@ -25,7 +25,6 @@ export const postReviewAction = (obj) => async (dispatch) => {
 
 //fetch review action
 export const fetchReviewAction = (isPrivate) => async (dispatch) => {
-  console.log("check");
   const { status, reviews } = await fetchReviewAxios(isPrivate);
 
   if (status === "success") {
@@ -40,10 +39,10 @@ export const editReviewStatusAction = (obj) => async (dispatch) => {
   const pending = updateReviewStatusAxios(obj);
   toast.promise(pending, { pending: "Please wait..." });
 
-  const { status, message } = await pending;
+  const { status, message, review } = await pending;
   toast[status](message);
 
   if (status === "success") {
-    dispatch(updateReviewStatus(obj));
+    dispatch(updateReviewStatus(review));
   }
 };

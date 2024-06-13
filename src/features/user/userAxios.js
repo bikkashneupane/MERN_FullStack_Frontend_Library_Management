@@ -1,14 +1,10 @@
 import { apiProcessior } from "../../helper/axiosHelper";
 
-const privateUserAPI =
-  import.meta.env.VITE_APP_SERVER_API + "/library/users/private";
 const userAPI = import.meta.env.VITE_APP_SERVER_API + "/library/users";
-const signupAPI = `${userAPI}/signup`;
-const loginAPI = `${userAPI}/login`;
 
 export const signupNewUser = (signupObj) => {
   const axiosObj = {
-    url: signupAPI,
+    url: `${userAPI}/signup`,
     method: "POST",
     data: signupObj,
   };
@@ -18,7 +14,7 @@ export const signupNewUser = (signupObj) => {
 
 export const loginUser = (loginObj) => {
   const axiosObj = {
-    url: loginAPI,
+    url: `${userAPI}/login`,
     method: "POST",
     data: loginObj,
   };
@@ -29,7 +25,7 @@ export const loginUser = (loginObj) => {
 //get login User profile for private user
 export const fetchUserInfo = () => {
   const axiosObj = {
-    url: privateUserAPI,
+    url: userAPI,
     method: "get",
     isPrivate: true,
   };

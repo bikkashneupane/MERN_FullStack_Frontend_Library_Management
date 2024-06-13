@@ -10,12 +10,12 @@ import { addNewBurrowAction } from "../../features/burrows/burrowAction";
 export const BookLanding = () => {
   const { _id } = useParams();
   const location = useLocation();
-  // console.log(location);
 
   const dispatch = useDispatch();
 
-  const { books } = useSelector((state) => state.bookInfo);
   const { user } = useSelector((state) => state.userInfo);
+  const { publicReview } = useSelector((state) => state.reviewInfo);
+  const { books } = useSelector((state) => state.bookInfo);
 
   const book = books.find((item) => item._id === _id);
 
@@ -45,6 +45,10 @@ export const BookLanding = () => {
     }
   };
 
+  const averageRating =
+    publicReview?.reduce((acc, curr) => acc + curr.ratings, 0) /
+      publicReview.length || 0;
+
   return (
     <DefaultLayout>
       <Row className="g-2">
@@ -58,7 +62,7 @@ export const BookLanding = () => {
           <p>
             {author} - {publishedYear}
           </p>
-          <Stars stars={3.5} />
+          <Stars stars={averageRating} />
           <p className="mt-5">{description.slice(0, 130)}.....</p>
           <div className="d-grid">
             {user?._id ? (
@@ -97,7 +101,7 @@ export const BookLanding = () => {
               {description}
             </Tab>
             <Tab eventKey="review" title="Reviews">
-              <ReviewBlock stars={3.5} />
+              <ReviewBlock />
             </Tab>
           </Tabs>
           {/* tab bar

@@ -1,13 +1,15 @@
 import React from "react";
 import { Stars } from "../../components/stars/Stars";
+import { useSelector } from "react-redux";
 
-export const ReviewBlock = ({ publicReviews }) => {
+export const ReviewBlock = () => {
+  const { publicReview } = useSelector((state) => state.reviewInfo);
   return (
-    <div>
-      {publicReviews?.map(
+    <div className="mb-5">
+      {publicReview?.map(
         ({ _id, userName, title, ratings, message, createdAt }) => {
           return (
-            <div key={_id}>
+            <div key={_id} className="mb-2">
               <div className="d-flex gap-2 align-items-baseline mb-2">
                 <div
                   className="bg-primary rounded-pill d-flex justify-content-center align-items-center fw-bolder text-white"
