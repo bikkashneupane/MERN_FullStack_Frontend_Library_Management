@@ -3,12 +3,12 @@
 }
 
 .carousel {
-  height: 60vh;
+  height: 40vh;
+  object-fit: cover;
 }
 
 .carousel img {
-  height: 60vh;
-  object-fit: cover;
+  height: 40vh;
 }
 
 a {

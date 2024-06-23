@@ -1,9 +1,9 @@
 //middle actions between login and axios
 
-import { fetchUserInfo, loginUser } from "./userAxios";
+import { fetchAllUsers, fetchUserInfo, loginUser } from "./userAxios";
 
 import { getNewAccessJWT } from "../../helper/axiosHelper";
-import { setUser } from "./userSlice";
+import { setAllUsers, setUser } from "./userSlice";
 import { toast } from "react-toastify";
 
 //this will update state in redux store using dispatche
@@ -48,4 +48,11 @@ export const autoLogin = () => async (dispatch) => {
 
     token && dispatch(getUserObj());
   }
+};
+
+// get all users
+export const getAllUsersAction = () => async (dispatch) => {
+  const { users } = await fetchAllUsers();
+  //update redux store
+  dispatch(setAllUsers(users));
 };

@@ -9,7 +9,7 @@ import Table from "react-bootstrap/Table";
 import { useDispatch } from "react-redux";
 import { returnBurrowsAction } from "../../features/burrows/burrowAction";
 
-export const MyBurrowTable = ({ burrows = [] }) => {
+export const MyBurrowTable = ({ burrows }) => {
   const dispatch = useDispatch();
   const [burrow, setBurrow] = useState({});
 

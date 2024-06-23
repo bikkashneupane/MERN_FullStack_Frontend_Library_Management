@@ -32,3 +32,14 @@ export const fetchUserInfo = () => {
 
   return apiProcessior(axiosObj);
 };
+
+//get all users
+export const fetchAllUsers = () => {
+  const axiosObj = {
+    url: userAPI + "/all",
+    method: "get",
+    isPrivate: true,
+  };
+
+  return apiProcessior(axiosObj);
+};

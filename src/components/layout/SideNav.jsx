@@ -21,11 +21,13 @@ export const SideNav = () => {
       icon: <PiStudentBold />,
       title: "Students",
       to: "/admin/students",
+      isAdminOnly: true,
     },
     {
       icon: <IoList />,
       title: "All Burrow",
       to: "/admin/all-burrows",
+      isAdminOnly: true,
     },
     {
       icon: <TbStarsFilled />,
