@@ -1,6 +1,6 @@
 //middle actions between login and axios
-
 import {
+  deleteUser,
   fetchAllUsers,
   fetchUserInfo,
   loginUser,
@@ -63,15 +63,33 @@ export const getAllUsersAction = () => async (dispatch) => {
 };
 
 // update user action
-export const updateUserAction = (obj, isAdmin) => async (dispatch) => {
-  const updatePending = updateUser(obj);
-  toast.promise(updatePending, { pending: "Please wait...." });
+export const updateUserAction =
+  (obj, isAdmin, navigate) => async (dispatch) => {
+    const updatePending = updateUser(obj);
+    toast.promise(updatePending, { pending: "Please wait...." });
 
-  const { status, message } = await updatePending;
-  toast[status](message);
+    const { status, message } = await updatePending;
+    toast[status](message);
+
+    if (status === "success") {
+      dispatch(getUserObj());
+      if (isAdmin) {
+        dispatch(getAllUsersAction());
+        navigate("/admin/students");
+      }
+    }
+  };
+
+// delete user action
+export const deleteUserAction = (_id, navigate) => async (dispatch) => {
+  const deletePending = deleteUser(_id);
+  toast.promise(deletePending, { pending: "Please wait...." });
+
+  const { status, message } = await deletePending;
+  toast[status](message, { position: "bottom-right" });
 
   if (status === "success") {
-    dispatch(getUserObj());
-    isAdmin && dispatch(getAllUsersAction());
+    dispatch(getAllUsersAction());
+    navigate("/admin/students");
   }
 };

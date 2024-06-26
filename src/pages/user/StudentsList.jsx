@@ -3,27 +3,19 @@ import { UserLayout } from "../../components/layout/UserLayout";
 import { Button, Table } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import {
+  deleteUserAction,
   getAllUsersAction,
-  updateUserAction,
 } from "../../features/user/userAction";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 export const StudentsList = () => {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const { allUsers } = useSelector((state) => state.userInfo);
 
   useEffect(() => {
     dispatch(getAllUsersAction());
   }, [dispatch]);
-
-  const handleOnUpdateUser = (item) => {
-    console.log(item);
-    // dispatch(updateUsersAction(item));
-  };
-
-  const handleOnUserDelete = () => {
-    // TODO Update User Action, user axios and add route to delete user
-  };
 
   return (
     <UserLayout pageTitle={"Student List"}>
@@ -56,7 +48,9 @@ export const StudentsList = () => {
 
                   <Button
                     variant="danger"
-                    onClick={handleOnUserDelete}
+                    onClick={() =>
+                      dispatch(deleteUserAction(item?._id, navigate))
+                    }
                     className="w-50"
                   >
                     Delete

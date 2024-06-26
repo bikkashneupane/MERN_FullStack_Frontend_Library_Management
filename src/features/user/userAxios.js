@@ -50,6 +50,18 @@ export const updateUser = (obj) => {
     url: `${userAPI}`,
     method: "PUT",
     data: obj,
+    isPrivate: true,
+  };
+
+  return apiProcessior(axiosObj);
+};
+
+// delete user
+export const deleteUser = (_id) => {
+  const axiosObj = {
+    url: `${userAPI}/${_id}`,
+    method: "DELETE",
+    isPrivate: true,
   };
 
   return apiProcessior(axiosObj);

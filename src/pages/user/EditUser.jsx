@@ -25,8 +25,7 @@ export const EditUser = () => {
 
   const handleOnSubmit = async (e) => {
     e.preventDefault();
-    console.log(form);
-    dispatch(updateUserAction(form));
+    dispatch(updateUserAction(form, { isAdmin: true }, navigate));
   };
 
   const inputs = [
