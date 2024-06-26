@@ -2,17 +2,28 @@ import React, { useEffect } from "react";
 import { UserLayout } from "../../components/layout/UserLayout";
 import { Button, Table } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
-import { getAllUsersAction } from "../../features/user/userAction";
+import {
+  getAllUsersAction,
+  updateUserAction,
+} from "../../features/user/userAction";
+import { Link } from "react-router-dom";
 
 export const StudentsList = () => {
   const dispatch = useDispatch();
   const { allUsers } = useSelector((state) => state.userInfo);
 
-  console.log(allUsers);
-
   useEffect(() => {
     dispatch(getAllUsersAction());
   }, [dispatch]);
+
+  const handleOnUpdateUser = (item) => {
+    console.log(item);
+    // dispatch(updateUsersAction(item));
+  };
+
+  const handleOnUserDelete = () => {
+    // TODO Update User Action, user axios and add route to delete user
+  };
 
   return (
     <UserLayout pageTitle={"Student List"}>
@@ -36,8 +47,20 @@ export const StudentsList = () => {
                 <td>{item?.lastName} </td>
                 <td>{item?.createdAt?.slice(0, 10)} </td>
                 <td>{item?.role} </td>
-                <td>
-                  <Button variant="danger">Delete User</Button>
+                <td className="d-flex gap-2">
+                  <Link to={`/admin/users/edit/${item?._id}`} className="w-50">
+                    <Button variant="warning" className="w-100">
+                      Edit
+                    </Button>
+                  </Link>
+
+                  <Button
+                    variant="danger"
+                    onClick={handleOnUserDelete}
+                    className="w-50"
+                  >
+                    Delete
+                  </Button>
                 </td>
               </tr>
             ))}

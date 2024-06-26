@@ -43,3 +43,14 @@ export const fetchAllUsers = () => {
 
   return apiProcessior(axiosObj);
 };
+
+// update user
+export const updateUser = (obj) => {
+  const axiosObj = {
+    url: `${userAPI}`,
+    method: "PUT",
+    data: obj,
+  };
+
+  return apiProcessior(axiosObj);
+};

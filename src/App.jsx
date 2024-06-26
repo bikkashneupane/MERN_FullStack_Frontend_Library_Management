@@ -20,6 +20,7 @@ import { useDispatch } from "react-redux";
 import { useEffect } from "react";
 import { Reviews } from "./pages/reviews/Reviews";
 import { fetchReviewAction } from "./features/reviews/reviewAction";
+import { EditUser } from "./pages/user/EditUser";
 
 // const isPrivate = false;
 
@@ -49,6 +50,7 @@ function App() {
         <Route path="/admin/all-burrows" element={<AllBurrow />} />
         <Route path="/admin/students" element={<StudentsList />} />
         <Route path="/admin/reviews" element={<Reviews />} />
+        <Route path="/admin/users/edit/:_id" element={<EditUser />} />
 
         {/* both admin and students  */}
         <Route path="/my-books" element={<MyBurrow />} />

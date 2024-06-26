@@ -1,6 +1,11 @@
 //middle actions between login and axios
 
-import { fetchAllUsers, fetchUserInfo, loginUser } from "./userAxios";
+import {
+  fetchAllUsers,
+  fetchUserInfo,
+  loginUser,
+  updateUser,
+} from "./userAxios";
 
 import { getNewAccessJWT } from "../../helper/axiosHelper";
 import { setAllUsers, setUser } from "./userSlice";
@@ -55,4 +60,18 @@ export const getAllUsersAction = () => async (dispatch) => {
   const { users } = await fetchAllUsers();
   //update redux store
   dispatch(setAllUsers(users));
+};
+
+// update user action
+export const updateUserAction = (obj, isAdmin) => async (dispatch) => {
+  const updatePending = updateUser(obj);
+  toast.promise(updatePending, { pending: "Please wait...." });
+
+  const { status, message } = await updatePending;
+  toast[status](message);
+
+  if (status === "success") {
+    dispatch(getUserObj());
+    isAdmin && dispatch(getAllUsersAction());
+  }
 };
