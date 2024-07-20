@@ -38,9 +38,11 @@ export const apiProcessior = async ({
 
       //re-call back api processor
       if (token) {
+        console.log("Token in error: ", token);
         return apiProcessior({ method, url, data, isPrivate });
       }
 
+      console.log("Deleting token now:   CHECKCCCCCCC");
       //clear the tokens
       localStorage.removeItem("refreshJWT");
       sessionStorage.removeItem("accessJWT");
@@ -61,7 +63,12 @@ export const getNewAccessJWT = async () => {
     isRefreshJWT: true,
   });
 
+  console.log("Line 66 of axiosHelper: ", accessJWT);
   accessJWT && sessionStorage.setItem("accessJWT", accessJWT);
+  console.log(
+    "Line 68 , getting accessJWT from sessionStorage ",
+    sessionStorage.getItem("accessWT")
+  );
 
   return accessJWT;
 };
