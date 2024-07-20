@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import { UserLayout } from "../../components/layout/UserLayout";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -9,8 +9,8 @@ import { Button, Form, Table } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
 export const Reviews = () => {
-  const { adminReview } = useSelector((state) => state.reviewInfo);
   const dispatch = useDispatch();
+  const { adminReview } = useSelector((state) => state.reviewInfo);
 
   useEffect(() => {
     dispatch(fetchReviewAction({ isPrivate: true }));
