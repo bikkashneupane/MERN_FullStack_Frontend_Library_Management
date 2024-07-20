@@ -29,7 +29,9 @@ export const apiProcessior = async ({
     const response = await axios({ url, method, data, headers });
     return response.data;
   } catch (error) {
+    console.log(error);
     const message = error?.response?.data?.message ?? error.message;
+
     if (message === "jwt expired") {
       //now user uses refreshJWT to request new accessJWT
       const token = await getNewAccessJWT();
@@ -59,7 +61,7 @@ export const getNewAccessJWT = async () => {
     isRefreshJWT: true,
   });
 
-  sessionStorage.setItem("accessJWT", accessJWT);
+  accessJWT && sessionStorage.setItem("accessJWT", accessJWT);
 
   return accessJWT;
 };

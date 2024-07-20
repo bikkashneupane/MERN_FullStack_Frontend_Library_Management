@@ -50,7 +50,6 @@ export const autoLogin = () => async (dispatch) => {
   //when access do not exist but refresh JWT
   if (refreshJWT) {
     const token = await getNewAccessJWT();
-
     token && dispatch(getUserObj());
   }
 };
